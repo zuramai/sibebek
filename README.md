@@ -1,8 +1,8 @@
-# 🦆 Sibebek Farm Monitoring System
+# Sibebek Farm Monitoring System
 
 A real-time IoT monitoring system for duck farm environmental conditions using ESP8266, MQTT, and React.
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # 1. Start MQTT broker
@@ -20,7 +20,7 @@ bun run dev
 - `sibebek/humidity` - Humidity in %
 - `sibebek/ammonia` - Ammonia gas in ppm
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables (Web App)
 
@@ -50,17 +50,26 @@ const char* mqtt_server = "192.168.1.100";  // Your broker IP
 const int mqtt_port = 1883;
 ```
 
-## 📱 Management Commands
+## Management Commands
 
 ```bash
-# MQTT Broker
-./mqtt.sh start       # Start broker
-./mqtt.sh stop        # Stop broker
-./mqtt.sh restart     # Restart broker
-./mqtt.sh status      # Check status
-./mqtt.sh logs        # View logs
-./mqtt.sh subscribe   # Monitor all messages
-./mqtt.sh test        # Publish test data
+Usage: ./mqtt.sh [command]
+
+Commands:
+  start       - Start the MQTT broker
+  stop        - Stop the MQTT broker
+  restart     - Restart the MQTT broker
+  status      - Check broker status
+  logs        - View broker logs
+  subscribe   - Subscribe to all topics
+  test        - Publish test data
+  clients     - Show connected clients
+  help        - Show this help message
+
+Examples:
+  ./mqtt.sh start       # Start the broker
+  ./mqtt.sh subscribe   # Listen to all messages
+  ./mqtt.sh test        # Send test data
 
 # Web App
 cd sibebek
@@ -69,7 +78,7 @@ bun run build        # Production build
 bun run preview      # Preview build
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Test without hardware:
 
@@ -88,7 +97,7 @@ bun run preview      # Preview build
 3. Open web app in browser
 4. Verify real-time updates
 
-## 🔐 Security (Production)
+## Security (Production)
 
 For production deployment:
 
@@ -117,30 +126,6 @@ For production deployment:
 - **[README_MOSQUITTO.md](./README_MOSQUITTO.md)** - Mosquitto broker guide
 - **[MQTT_SETUP.md](./MQTT_SETUP.md)** - MQTT architecture details
 
-## 🐛 Troubleshooting
-
-### Broker won't start
-```bash
-# Check if ports are in use
-lsof -i :1883
-lsof -i :9001
-
-# Check Docker logs
-./mqtt.sh logs
-```
-
-### Web app can't connect
-1. Verify `.env` file exists in `sibebek/`
-2. Check broker is running: `./mqtt.sh status`
-3. Check browser console for errors
-
-### ESP8266 not publishing
-1. Check Serial Monitor for errors
-2. Verify WiFi credentials
-3. Verify MQTT broker IP is reachable
-4. Check broker logs: `./mqtt.sh logs`
-
-## 🔄 System Requirements
 
 ### Arduino Libraries
 - ESP8266WiFi

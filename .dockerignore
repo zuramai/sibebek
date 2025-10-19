@@ -1,0 +1,7 @@
+node_modules
+sibebek/node_modules
+sibebek/dist
+.git
+.DS_Store
+*.log
+

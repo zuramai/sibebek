@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: sibebek-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"   # MQTT port for ESP8266
+      - "9001:9001"   # WebSocket port for web browser
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - sibebek-network
+
+networks:
+  sibebek-network:
+    driver: bridge
+

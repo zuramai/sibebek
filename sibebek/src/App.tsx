@@ -14,7 +14,7 @@ function App() {
     // Configuration is loaded from environment variables
     // For local development: ws://localhost:9001 (Docker)
     // For production: ws://YOUR_SERVER_IP:9001
-    const brokerUrl = import.meta.env.VITE_MQTT_BROKER_URL || 'ws://localhost:9001'
+    const brokerUrl = import.meta.env.VITE_MQTT_BROKER_URL || 'wss://localhost:9001'
     const reconnectPeriod = parseInt(import.meta.env.VITE_MQTT_RECONNECT_PERIOD || '5000')
     
     console.log(`Connecting to MQTT broker at: ${brokerUrl}`)
@@ -23,6 +23,7 @@ function App() {
       clientId: 'sibebek-web-' + Math.random().toString(16).substring(2, 8),
       clean: true,
       reconnectPeriod: reconnectPeriod,
+      rejectUnauthorized: false
     })
 
     client.on('connect', () => {
